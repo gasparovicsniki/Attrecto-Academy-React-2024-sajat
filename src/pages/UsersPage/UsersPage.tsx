@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { Page } from "../../components/page/Page";
 import { UserModel } from "../../models/user.model";
 import { userService } from "../../services/user.service";
@@ -8,6 +7,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import ProfileImagePreview from '../../components/ProfileImagePreview/ProfileImagePreview'; // Corrected path
 
 import classes from "./UsersPage.module.scss";
 
@@ -21,8 +21,6 @@ const UsersPage = () => {
     fetchUsers();
   }, []);
 
-  console.log(users);
-
   return (
     <Page title="Users">
       <div className="row">
@@ -32,9 +30,16 @@ const UsersPage = () => {
           </Button>
         </div>
       </div>
+
+      <div className="row">
+        <div className="col-12">
+          <ProfileImagePreview />
+        </div>
+      </div>
+
       <div className="row">
         {users.map(({ id, name, image }) => (
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3 my-1">
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3 my-1" key={id}>
             <Link
               to={`/user/${id}`}
               className={classNames("card", classes.UserCard)}
