@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 import BadgesPage from "./pages/BadgesPage/BadgesPage";
 import { UserPage } from "./pages/UserPage/UserPage";
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+
 
 function App() {
   return (
