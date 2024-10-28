@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { UseFormRegister } from "react-hook-form";
 import BaseField from "../base-field/BaseField";
@@ -7,9 +8,10 @@ interface TextFieldProps {
   type?: string;
   className?: string;
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
   error?: string;
+  value?: string; 
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; 
 }
 
 const TextField = ({
@@ -19,10 +21,17 @@ const TextField = ({
   register,
   error,
   type = "text",
+  value,
+  onChange,
 }: TextFieldProps) => {
   return (
     <BaseField className={className} label={label} error={error}>
-      <input type={type} className="form-control" {...register(name)} />
+      <input
+        type={type}
+        className="form-control"
+        {...(register ? register(name) : {})} 
+        {...(value !== undefined ? { value, onChange } : {})} 
+      />
     </BaseField>
   );
 };

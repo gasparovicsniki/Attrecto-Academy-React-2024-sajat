@@ -1,4 +1,3 @@
-// TableView.tsx
 import React from "react";
 import { BadgeModel } from "../../models/badges.model";
 
